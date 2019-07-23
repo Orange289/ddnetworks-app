@@ -1,0 +1,30 @@
+// Typographic
+
+$font-fam: 'Exo 2';
+$font-local: 'Exo 2';
+$font-regular-url1: '../../assets/fonts/Exo2-Regular.woff2';
+$font-regular-url2: '../../assets/fonts/Exo2-Regular.woff';
+$font-regular-weight: 400;
+
+$font-medium-url1: '../../assets/fonts/Exo2-Medium.woff2';
+$font-medium-url2: '../../assets/fonts/Exo2-Medium.woff';
+$font-medium-weight: 500;
+
+$font-size-base: 16px;
+
+// Media
+
+$breakpoints: ( // new names for best understanding meaning
+  'mobile--small': 320px,
+  'mobile': 768px,
+  'tablet': 1024px,
+  'desktop': 1280px,
+  'desktop--big': 1920px
+);
+
+// Colors
+
+$black-color: #000;
+$white-color: #fff;
+$primary-color: #8462a6;
+

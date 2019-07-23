@@ -1,0 +1,18 @@
+// Fonts
+@include font-setup($font-fam, $font-local, $font-regular-url1, $font-regular-url2, $font-regular-weight);
+@include font-setup($font-fam, $font-local, $font-medium-url1, $font-medium-url2, $font-medium-weight);
+
+html {
+  font-size: $font-size-base;
+}
+
+body {
+  font-family: $font-fam, sans-serif;
+}
+
+.container {
+  @include bp(0 tablet) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
