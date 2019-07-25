@@ -16,3 +16,11 @@ body {
     padding-right: 20px;
   }
 }
+
+// BULMA styles override
+
+.level {
+  @include bp(0 tablet) {
+    display: block;
+  }
+}

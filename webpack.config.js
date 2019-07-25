@@ -17,6 +17,13 @@ module.exports = {
     path: PATHS.dist,
     filename: "index.js"
   },
+  optimization: {
+    splitChunks: {
+      // Must be specified for HtmlWebpackPlugin to work correctly.
+      // See: https://github.com/jantimon/html-webpack-plugin/issues/882
+      chunks: 'all',
+    },
+  },
   module: {
     rules: [
       {
@@ -58,7 +65,7 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
-              outputPath: PATHS.dist + "/fonts/"
+              outputPath: "/fonts/"
             }
           }
         ]

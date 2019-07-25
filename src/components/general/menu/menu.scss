@@ -1,0 +1,46 @@
+.menu {
+  height: 0;
+  overflow-y: hidden;
+  box-shadow: 0 3px 3px 0 rgba(#eee,.7);
+  transition: height .3s;
+  text-align: center;
+
+  &.active {
+    height: 380px;
+  }
+
+  li {
+    display: block;
+    padding-top: 26px;
+
+    &:last-child {
+      padding-bottom: 26px;
+    }
+
+    a {
+      font-size: 22px;
+      color: $black-color;
+      display: block;
+      width: 100%;
+      transition: color .3s;
+    }
+
+    a:hover {
+      color: $primary-color;
+      text-decoration: underline;
+    }
+  }
+
+  @include bp(tablet) {
+    &.active {
+      height: 86px;
+    }
+
+    li {
+      padding: 26px 0;
+
+      a {
+      }
+    }
+  }
+}
