@@ -1,0 +1,45 @@
+.intro {
+  color: $white-color;
+  padding-top: 108px;
+  padding-bottom: 80px;
+  background: url('/assets/images/hero-bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+
+  &:before {
+    content: '';
+    @include size(100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba($black-color, .5);
+  }
+
+  h1 {
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 54px;
+    margin-bottom: 28px;
+  }
+
+  @include bp(tablet) {
+    padding-top: 188px;
+    padding-top: 160px;
+  }
+
+  @include bp(desktop) {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+
+    h1 {
+      font-size: 60px;
+      margin-bottom: 70px;
+    }
+
+    p {
+      font-size: 30px;
+    }
+  }
+}

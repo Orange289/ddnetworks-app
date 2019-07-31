@@ -21,6 +21,27 @@ export default class Header extends Component {
   };
 
   render() {
+
+    let lastScrollTop = 0;
+    const hiddenHeaderClass = 'hidden';
+    const fixedHeaderClass = 'fixed';
+    let headerTop = 70;
+
+    window.addEventListener('scroll', function() {
+      const st = window.pageYOffset || document.documentElement.scrollTop; 
+      if ((st > lastScrollTop) && (window.pageYOffset > headerTop)) {
+        document.querySelector('.header').classList.add(hiddenHeaderClass);
+      } else {
+          document.querySelector('.header').classList.remove(hiddenHeaderClass);
+          if (window.pageYOffset > headerTop) {
+            document.querySelector('.header').classList.add(fixedHeaderClass);
+          } else {
+            document.querySelector('.header').classList.remove(fixedHeaderClass);
+          }
+      }
+      lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+    }, false);
+
     return (
       <header className="header">
         <div className="header__top">

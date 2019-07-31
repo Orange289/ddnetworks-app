@@ -1,6 +1,6 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
@@ -12,10 +12,10 @@ const PATHS = {
 };
 
 module.exports = {
-  entry: PATHS.src + "/index.js",
+  entry: PATHS.src + '/index.js',
   output: {
     path: PATHS.dist,
-    filename: "index.js"
+    filename: 'index.js'
   },
   optimization: {
     splitChunks: {
@@ -30,21 +30,21 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
+          loader: 'babel-loader'
         },
       },
       {
         test: /\.scss$/,
         use: [
-          env !== "production"
+          env !== 'production'
             ? 'style-loader'
             : MiniCssExtractPlugin.loader,
-          "css-loader",
-          "sass-loader",
+          'css-loader',
+          'sass-loader',
           {
-            loader: "sass-resources-loader",
+            loader: 'sass-resources-loader',
             options: {
-              resources: PATHS.src + "/helpers/*.scss"
+              resources: PATHS.src + '/helpers/*.scss'
             }
           }
         ]
@@ -52,10 +52,10 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          env !== "production"
-            ? "style-loader"
+          env !== 'production'
+            ? 'style-loader'
             : MiniCssExtractPlugin.loader,
-          "css-loader"
+          'css-loader'
         ]
       },
       {
@@ -65,36 +65,54 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
-              outputPath: "/fonts/"
+              outputPath: '/assets/fonts/'
             }
           }
         ]
-      }
+      },
+      {
+        test: /\.(png|jpe?g|gif)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: PATHS.dist + '/assets/images/[name].[hash:7].[ext]'
+        }
+      },
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 10000,
+            name: PATHS.dist + '/assets/video/[name].[hash:7].[ext]'
+          }
+        }
+      },
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html"
+      template: './src/index.html'
     }),
     new CopyWebpackPlugin([
       {
         from: PATHS.assets + '/images',
-        to: './images'
+        to: './assets/images'
       },
       {
         from: PATHS.assets + '/icons',
-        to: './icons'
+        to: './assets/icons'
       },
       {
         from: PATHS.assets + '/video',
-        to: './video'
+        to: './assets/video'
       },
     ]),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename: "css/[name].[chunkhash].css",
-      chunkFilename: "css/[id].[chunkhash].css"
+      filename: 'css/[name].[chunkhash].css',
+      chunkFilename: 'css/[id].[chunkhash].css'
     }),
     new CleanWebpackPlugin()
   ]
